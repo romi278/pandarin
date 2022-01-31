@@ -1,0 +1,63 @@
+import java.util.Random;
+import java.util.Scanner;
+
+
+public class PandaRin {
+
+  public static void main(String[] args) {
+    
+    System.out.print("Pulsa cualquier tecla para comenzar");
+    Scanner entrada = new Scanner(System.in);
+    String teclado = entrada.nextLine();
+    
+    Random salto1 = new Random();
+    Random salto2 = new Random();
+    
+    int total = 0;
+    int randomNumber1 = 0;
+    int randomNumber2 = 0;
+    boolean jugar = true;
+    int cont = 0;
+
+    while (jugar) {
+      //Saltamos
+      randomNumber1 = salto1.nextInt(15) + 1;
+      randomNumber2 = salto2.nextInt(10) + 1;
+      
+      total = randomNumber1 + randomNumber2;
+      
+      System.out.println(randomNumber1 + " " + randomNumber2);
+      System.out.println("Total " + total);
+      
+          if (total == 30) {
+            System.out.println("Has llegado a la meta");
+            jugar = false; //ya no puedes jugar más
+    
+          } else if (total <=15) { 
+            System.out.println("Has esquivado un bambú, contínuas jugando (pulsa TRUE)");
+            
+            jugar = entrada.nextBoolean();
+            cont++;
+          
+              
+         } else if (total >=16 && total <=19) { 
+           System.out.println("Has esquivado un bambú con doble salto, contínuas jugando (pulsa TRUE)");
+            
+           jugar = entrada.nextBoolean();
+           cont++;
+            
+            
+        } else {
+          System.out.println("Tropiezas con un bambú, has perdido");
+          jugar = false; //ya no puedes jugar
+        }
+      }
+
+    entrada.close(); //borramos el scanner
+    System.out.println("Fin de la partida");
+    System.out.println("Puntos alcanzados: " + cont);
+
+    
+  }
+  
+}
